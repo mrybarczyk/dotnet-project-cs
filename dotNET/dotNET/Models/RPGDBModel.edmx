@@ -1,0 +1,169 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="bazaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="characterID" />
+          </Key>
+          <Property Name="characterID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="20" />
+          <Property Name="lastName" Type="varchar" MaxLength="60" />
+          <Property Name="campaign" Type="varchar" MaxLength="60" />
+          <Property Name="playerID" Type="int" Nullable="false" />
+          <Property Name="historia" Type="varchar" MaxLength="1000" />
+          <Property Name="uniwersum" Type="varchar" MaxLength="60" />
+          <Property Name="poziom" Type="int" />
+          <Property Name="wiek" Type="int" />
+          <Property Name="ekwipunek" Type="varchar" MaxLength="1000" />
+          <Property Name="umiejetnosci" Type="varchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="playerID" />
+          </Key>
+          <Property Name="playerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="firstName" Type="varchar" MaxLength="20" />
+          <Property Name="lastName" Type="varchar" MaxLength="60" />
+          <Property Name="email" Type="varchar" MaxLength="60" />
+          <Property Name="psd" Type="varchar" MaxLength="60" />
+          <Property Name="isAdmin" Type="int" Nullable="false" />
+          <Property Name="isBanned" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Character__playe__4BAC3F29">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bazaModelStoreContainer">
+          <EntitySet Name="Characters" EntityType="Self.Characters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Player" EntityType="Self.Player" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Character__playe__4BAC3F29" Association="Self.FK__Character__playe__4BAC3F29">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bazaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Characters">
+          <Key>
+            <PropertyRef Name="characterID" />
+          </Key>
+          <Property Name="characterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="campaign" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="playerID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Player" Relationship="Self.FK__Character__playe__4BAC3F29" FromRole="Characters" ToRole="Player" />
+          <Property Name="historia" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="uniwersum" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="poziom" Type="Int32" />
+          <Property Name="wiek" Type="Int32" />
+          <Property Name="ekwipunek" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="umiejetnosci" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="playerID" />
+          </Key>
+          <Property Name="playerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="lastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Name="psd" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Characters" Relationship="Self.FK__Character__playe__4BAC3F29" FromRole="Player" ToRole="Characters" />
+          <Property Name="isAdmin" Type="Int32" Nullable="false" />
+          <Property Name="isBanned" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Character__playe__4BAC3F29">
+          <End Role="Player" Type="Self.Player" Multiplicity="1" />
+          <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="playerID" />
+            </Principal>
+            <Dependent Role="Characters">
+              <PropertyRef Name="playerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bazaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Characters" EntityType="Self.Characters" />
+          <EntitySet Name="Player" EntityType="Self.Player" />
+          <AssociationSet Name="FK__Character__playe__4BAC3F29" Association="Self.FK__Character__playe__4BAC3F29">
+            <End Role="Player" EntitySet="Player" />
+            <End Role="Characters" EntitySet="Characters" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bazaModelStoreContainer" CdmEntityContainer="bazaEntities">
+          <EntitySetMapping Name="Characters">
+            <EntityTypeMapping TypeName="bazaModel.Characters">
+              <MappingFragment StoreEntitySet="Characters">
+                <ScalarProperty Name="umiejetnosci" ColumnName="umiejetnosci" />
+                <ScalarProperty Name="ekwipunek" ColumnName="ekwipunek" />
+                <ScalarProperty Name="wiek" ColumnName="wiek" />
+                <ScalarProperty Name="poziom" ColumnName="poziom" />
+                <ScalarProperty Name="uniwersum" ColumnName="uniwersum" />
+                <ScalarProperty Name="historia" ColumnName="historia" />
+                <ScalarProperty Name="characterID" ColumnName="characterID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="campaign" ColumnName="campaign" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Player">
+            <EntityTypeMapping TypeName="bazaModel.Player">
+              <MappingFragment StoreEntitySet="Player">
+                <ScalarProperty Name="isBanned" ColumnName="isBanned" />
+                <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+                <ScalarProperty Name="playerID" ColumnName="playerID" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="psd" ColumnName="psd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

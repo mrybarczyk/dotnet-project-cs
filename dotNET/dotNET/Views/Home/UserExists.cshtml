@@ -1,0 +1,20 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Błąd</title>
+</head>
+<body>
+    <h1>
+        Istnieje już użytkownik o podanym adresie e-mail. Skontaktuj się z administratorem w celu uzyskania pomocy.
+    </h1>
+    <div>
+        @Html.ActionLink("Powrót", "Create", "Login")
+    </div>
+</body>
+</html>

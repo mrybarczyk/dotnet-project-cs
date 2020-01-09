@@ -1,0 +1,63 @@
+﻿@model IEnumerable<dotNET.Models.Characters>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["player"] == null)
+    {
+        Response.Redirect("~/Session/Form");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+</head>
+<body>
+    @if (Model.Count() == 0)
+    {
+        <h2>Brak postaci.</h2>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Imię
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    Kampania
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.firstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.campaign)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edytuj", "Edit", "Home", new { id = item.characterID }, null) |
+                        @Html.ActionLink("Więcej informacji", "Details", "Home", new { id = item.characterID }, null) |
+                        @Html.ActionLink("Usuń", "Delete", "Home", new { id = item.characterID }, null)
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+        @Html.ActionLink("Powrót", "Index", "Admin")
+    </body>
+</html>

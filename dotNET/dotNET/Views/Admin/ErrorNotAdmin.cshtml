@@ -1,0 +1,26 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["player"] == null)
+    {
+        Response.Redirect("~/Session/Form");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Błąd</title>
+</head>
+<body>
+    <p> </p>
+    <h1>
+        Nie można zbanować administratora.
+    </h1>
+    <p> </p>
+    <div>
+        @Html.ActionLink("Powrót", "Index", "Admin")
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿@model  IEnumerable<dotNET.Models.Player>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Kontakt</title>
+</head>
+<body>
+    <h3>Administracja</h3>
+    @foreach (var item in Model)
+    {
+        <h5><b>@Html.DisplayFor(modelItem => item.firstName) @Html.DisplayFor(modelItem => item.lastName)</b> @Html.DisplayFor(modelItem => item.email)</h5>        
+    }
+</body>
+</html>

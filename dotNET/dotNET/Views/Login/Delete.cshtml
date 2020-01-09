@@ -1,0 +1,35 @@
+﻿@model dotNET.Models.Player
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["player"] == null)
+    {
+        Response.Redirect("~/Session/Form");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Delete</title>
+</head>
+<body>
+    <h3>Czy na pewno chcesz usunąć konto? Ta akcja jest nieodwracalna.</h3>
+    <div>
+        <h4>Tak, Ja @Html.DisplayFor(model => model.firstName) @Html.DisplayFor(model => model.lastName) chcę usunąć swoje konto.</h4>
+        <hr />
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+    <div class="form-actions no-color">
+        <input type="submit" value="Usuń" class="btn btn-default" /> |
+        @Html.ActionLink("Wróć", "Index", "Home")
+    </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["player"] == null)
+    {
+        Response.Redirect("~/Session/Form");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Wybierz</title>
+</head>
+<body>
+    <p>   </p>
+    <p>@Html.ActionLink("Panel administratora", "Index", "Admin")</p>
+    <p>@Html.ActionLink("Panel użytkownika", "Index", "Home")</p>
+</body>
+</html>

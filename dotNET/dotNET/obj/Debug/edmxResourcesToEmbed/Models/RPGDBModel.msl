@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="bazaModelStoreContainer" CdmEntityContainer="bazaEntities">
+    <EntitySetMapping Name="Characters">
+      <EntityTypeMapping TypeName="bazaModel.Characters">
+        <MappingFragment StoreEntitySet="Characters">
+          <ScalarProperty Name="umiejetnosci" ColumnName="umiejetnosci" />
+          <ScalarProperty Name="ekwipunek" ColumnName="ekwipunek" />
+          <ScalarProperty Name="wiek" ColumnName="wiek" />
+          <ScalarProperty Name="poziom" ColumnName="poziom" />
+          <ScalarProperty Name="uniwersum" ColumnName="uniwersum" />
+          <ScalarProperty Name="historia" ColumnName="historia" />
+          <ScalarProperty Name="characterID" ColumnName="characterID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="campaign" ColumnName="campaign" />
+          <ScalarProperty Name="playerID" ColumnName="playerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Player">
+      <EntityTypeMapping TypeName="bazaModel.Player">
+        <MappingFragment StoreEntitySet="Player">
+          <ScalarProperty Name="isBanned" ColumnName="isBanned" />
+          <ScalarProperty Name="isAdmin" ColumnName="isAdmin" />
+          <ScalarProperty Name="playerID" ColumnName="playerID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="psd" ColumnName="psd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,60 @@
+﻿@model dotNET.Models.Characters
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["player"] == null)
+    {
+        Response.Redirect("~/Session/Form");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Usuń</title>
+</head>
+<body>
+    <h3>Czy na pewno chcesz usunąć tę postać?</h3>
+    <div>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.firstName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.firstName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.lastName)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.lastName)
+            </dd>
+
+            <dt>
+                @Html.DisplayNameFor(model => model.campaign)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.campaign)
+            </dd>
+
+        </dl>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-actions no-color">
+                <input type="submit" value="Usuń" class="btn btn-default" /> |
+                @Html.ActionLink("Anuluj", "Panel", "Home")
+            </div>
+        }
+    </div>
+</body>
+</html>

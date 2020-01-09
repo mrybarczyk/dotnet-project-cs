@@ -1,0 +1,62 @@
+﻿<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"</span>
+            </button>
+            @Html.ActionLink("Postaci RPG", "Panel", "Home", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Strona główna", "Panel", "Home")</li>
+                <li>@Html.ActionLink("O aplikacji", "About", "Home")</li>
+                <li>@Html.ActionLink("Kontakt", "Contact", "Home")</li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Dashboard</a>
+                    <div class="dropdown-menu">
+                        <p>
+                            <a class="dropdown-item" href="#">
+                                @if (Session["player"] != null)
+                                {
+                                    @Html.ActionLink("Edytuj konto", "Edit", "Login");
+                                }
+                            </a>
+                        </p>
+                        <p>
+                            <a class="dropdown-item" href="#">
+                                @if (Session["player"] != null)
+                                {
+                                    @Html.ActionLink("Usuń konto", "Delete", "Login");
+                                }
+                            </a>
+                        </p>
+                        <p>
+                            <a class="dropdown-item" href="#">
+                                @if (Session["player"] != null)
+                                {
+                                    @Html.ActionLink("Nowa postać", "Create", "Home");
+                                }
+                            </a>
+                        </p>
+                        <div class="dropdown-divider"></div>
+                        <p>
+                            <a class="dropdown-item" href="#">
+                                @if (Session["player"] != null)
+                                {
+                                    @Html.ActionLink("Wyloguj", "Logout", "Session");
+                                }
+                                else
+                                {
+                                    @Html.ActionLink("Zaloguj", "Form", "Session");
+                                }
+                            </a>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

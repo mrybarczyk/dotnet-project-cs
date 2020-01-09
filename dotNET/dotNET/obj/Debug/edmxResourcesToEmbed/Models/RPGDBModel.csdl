@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="bazaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Characters">
+    <Key>
+      <PropertyRef Name="characterID" />
+    </Key>
+    <Property Name="characterID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="campaign" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="playerID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Player" Relationship="Self.FK__Character__playe__4BAC3F29" FromRole="Characters" ToRole="Player" />
+    <Property Name="historia" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="uniwersum" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="poziom" Type="Int32" />
+    <Property Name="wiek" Type="Int32" />
+    <Property Name="ekwipunek" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="umiejetnosci" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="Player">
+    <Key>
+      <PropertyRef Name="playerID" />
+    </Key>
+    <Property Name="playerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="lastName" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <Property Name="psd" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Characters" Relationship="Self.FK__Character__playe__4BAC3F29" FromRole="Player" ToRole="Characters" />
+    <Property Name="isAdmin" Type="Int32" Nullable="false" />
+    <Property Name="isBanned" Type="Int32" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__Character__playe__4BAC3F29">
+    <End Role="Player" Type="Self.Player" Multiplicity="1" />
+    <End Role="Characters" Type="Self.Characters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Player">
+        <PropertyRef Name="playerID" />
+      </Principal>
+      <Dependent Role="Characters">
+        <PropertyRef Name="playerID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="bazaEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Characters" EntityType="Self.Characters" />
+    <EntitySet Name="Player" EntityType="Self.Player" />
+    <AssociationSet Name="FK__Character__playe__4BAC3F29" Association="Self.FK__Character__playe__4BAC3F29">
+      <End Role="Player" EntitySet="Player" />
+      <End Role="Characters" EntitySet="Characters" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

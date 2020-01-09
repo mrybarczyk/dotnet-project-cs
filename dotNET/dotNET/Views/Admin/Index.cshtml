@@ -1,0 +1,78 @@
+﻿@model IEnumerable<dotNET.Models.Player>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    if(Session["player"] == null)
+    {
+        Response.Redirect("~/Session/Form");
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Dashboard</title>
+</head>
+<body>
+
+    @if (Model.Count() == 0)
+    {
+        <h2>...jakim cudem nie ma żadnych użytkowników? Oo</h2>
+    }
+    else
+    {
+        <table class="table">
+            <tr>
+                <th>
+                    Imię
+                </th>
+                <th>
+                    Nazwisko
+                </th>
+                <th>
+                    E-mail
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.firstName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.lastName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @if (item.isBanned == 0)
+                        {
+                            @Html.ActionLink("Zbanuj", "Ban", new { id = item.playerID });
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Odbanuj", "Ban", new { id = item.playerID });
+                        } |
+                        @Html.ActionLink("Wyświetl postaci", "Details", new { id = item.playerID }) |
+                        @Html.ActionLink("Resetuj hasło", "Reset", new { id = item.playerID }) |
+                        @if (item.isAdmin == 0)
+                        {
+                            @Html.ActionLink("Mianuj administratorem", "Promote", new { id = item.playerID })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Odbierz uprawnienia", "Promote", new { id = item.playerID })
+                        }
+                    </td>
+                </tr>
+            }
+
+        </table>
+    }
+    </body>
+</html>
